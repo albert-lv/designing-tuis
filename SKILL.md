@@ -22,9 +22,9 @@ Identify the mode before acting:
 
 Load only what is needed:
 
-- Read `components-cheatsheet.md` before creating or editing components. It is the field/default source of truth.
-- Read `known-quirks.md` before debugging rendering problems or using edge-case layout behavior.
-- Read `workflow-examples.md` when the task resembles screenshot replication or a focused file tweak.
+- Read `references/components-cheatsheet.md` before creating or editing components. It is the field/default source of truth.
+- Read `references/known-quirks.md` before debugging rendering problems or using edge-case layout behavior.
+- Read `references/workflow-examples.md` when the task resembles screenshot replication or a focused file tweak.
 
 This repository is documentation-only. Do not assume render or export tools ship with it.
 
