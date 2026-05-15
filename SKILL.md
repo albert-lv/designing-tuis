@@ -1,11 +1,13 @@
 ---
 name: designing-tuis
-description: Use this skill whenever the user wants to design, replicate, or iterate on a terminal user interface, including TUI welcome screens, dashboards, wizards, CLI launch screens, tool panels, lazygit/k9s/btop-style screenshot replication, layout sketches, or focused edits to existing .tui files. Use it even when the user only describes panes, terminal screens, or CLI UI visuals without saying "TUI" explicitly.
+description: Design, replicate, or iterate terminal user interfaces from screenshots, descriptions, layout sketches, or existing .tui files.
 ---
 
 # Designing TUIs
 
 Use this skill to turn conversation, screenshots, or existing `.tui` files into practical terminal UI designs. Optimize for fast visual alignment first; export framework code only after the design is approved.
+
+Trigger for welcome screens, dashboards, wizards, CLI launch screens, tool panels, lazygit/k9s/btop-style layouts, pane descriptions, or terminal UI visuals even when the user does not say “TUI”.
 
 ## Operating Modes
 
