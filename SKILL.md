@@ -7,61 +7,61 @@ description: Use when designing terminal user interfaces, building TUI welcome s
 
 ## Overview
 
-对话驱动 TUI 设计：用户描述需求或贴参考截图，你产出 `.tui` JSON，渲染预览后按反馈迭代，满意后再导出目标框架代码。
+Dialogue-driven TUI design: turn user needs or screenshots into `.tui` JSON, preview when a renderer is available, iterate from feedback, then optionally export framework code.
 
 ## When to Use
 
-- 用户要做终端 UI（welcome screen、dashboard、wizard、工具面板）
-- 用户贴 lazygit / k9s / btop 等截图并要求复刻或参考
-- 用户提供已有 `.tui` 文件并要求局部修改
-- 用户描述布局结构（如左树右表、上下分栏）并希望快速可视化
+- Terminal UI: welcome screen, dashboard, wizard, or tool panel
+- lazygit / k9s / btop screenshot replication or reference
+- Focused edit to an existing `.tui` file
+- Layout sketch, such as left tree plus right table
 
-不适用：纯文本 CLI（无布局 UI）、Web UI、已有最终原型且不需要终端预览。
+Do not use for plain CLI output, Web UI, or final prototypes.
 
 ## Prerequisites
 
-- 当前工作目录含 `designs/` 与 `references/`
-- 如需预览或导出，用户需提供可用的 tui-studio 渲染/导出命令，不要假设本 skill 仓库内置工具
+- Working directory has `designs/` and `references/`
+- For preview/export, user provides the renderer/exporter; this repo bundles no tools
 
 ## Workflow
 
-1. **先确认输入**
-   - 截图输入：先描述识别到的布局与层次，等用户确认后再落 `.tui`
-   - 文字输入：先复述结构与重点交互
-2. **查组件默认值**
-   - 先读 `components-cheatsheet.md`，不要凭记忆猜字段
-3. **写 `.tui`**
-   - 输出到 `designs/<name>.tui`
-   - 结构使用 `{ version: "1", meta, tree }`
-4. **渲染预览**
-   - 若当前环境有用户提供的 renderer，预览 `designs/<name>.tui`；否则停下询问预览方式
-5. **小步迭代**
-   - 用户反馈后只改相关节点，避免全量重写
-6. **导出代码**
-   - 仅在用户要求并提供 exporter 时，定稿后导出 BubbleTea / Ink / Textual 等实现
+1. **Confirm the input first**
+   - Screenshot: describe layout/hierarchy, then wait before writing `.tui`
+   - Text: restate structure and key interactions
+2. **Check component defaults**
+   - Read `components-cheatsheet.md`; do not guess fields
+3. **Write `.tui`**
+   - Save to `designs/<name>.tui`
+   - Use `{ version: "1", meta, tree }`
+4. **Preview if possible**
+   - If a renderer is provided, preview it; otherwise ask how
+5. **Iterate in small steps**
+   - Change only relevant nodes; avoid full rewrites
+6. **Export code only on request**
+   - If requested and available, export BubbleTea / Ink / Textual code
 
 ## Critical Quirks
 
-详情见 `known-quirks.md`：
+See `known-quirks.md` for details:
 
-1. flexbox cross-axis 不支持 `"fill"`，要改显式数字
-2. Box 的 `title` 不会自动渲染，需要内部 Text 模拟
-3. `Popover` / `Tooltip` / `TextArea` 不是可用组件
-4. schema 字段位置要以 cheatsheet 为准，不要直接相信口述“新 schema”
+1. Cross-axis `"fill"` is unsupported; use explicit numbers
+2. `Box.title` is not rendered; simulate with inner `Text`
+3. `Popover` / `Tooltip` / `TextArea` are unavailable
+4. Verify field locations against the cheatsheet
 
 ## Common Mistakes
 
 | Mistake | Impact | Fix |
 |---|---|---|
-| 不查 cheatsheet 直接写 props | 字段无效或渲染失败 | 先查 defaults 再写 |
-| cross-axis 用 `"fill"` | 组件塌缩到 1 列/1 行 | 改显式宽高 |
-| 直接硬编码十六进制颜色 | 主题切换表现不稳定 | 用主题色名 |
-| 把 `width`/`height` 写错层级 | schema 校验失败 | 对照组件字段位置 |
-| 用户说“快速出图”就跳过确认 | 布局方向跑偏 | 先对齐目标再生成 |
+| Skipping cheatsheet | Invalid fields | Check defaults |
+| Cross-axis `"fill"` | 1 column/row collapse | Use numbers |
+| Hex colors | Poor theme behavior | Use theme names |
+| Wrong `width`/`height` level | Validation/render failure | Check location |
+| “Quick” skips confirmation | Layout drifts | Align intent |
 
 ## Red Flags — STOP and Re-check
 
-- 你准备在非主轴写 `"fill"`
-- 你不确定某个字段属于 `props` 还是 `layout`
-- 你想使用 `Popover`/`Tooltip`/`TextArea`
-- 只有截图且无文字意图时，你准备直接生成 `.tui`
+- You are using `"fill"` on a non-main axis
+- You are unsure whether a field is in `props` or `layout`
+- You want to use `Popover` / `Tooltip` / `TextArea`
+- You only have a screenshot and no stated intent, but are about to generate `.tui`
