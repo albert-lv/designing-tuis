@@ -20,8 +20,8 @@ description: Use when designing terminal user interfaces, building TUI welcome s
 
 ## Prerequisites
 
-- 本地可访问 `tui-studio` 仓库与其渲染工具
 - 当前工作目录含 `designs/` 与 `references/`
+- 如需预览或导出，用户需提供可用的 tui-studio 渲染/导出命令；不要假设本 skill 仓库内置工具
 
 ## Workflow
 
@@ -34,11 +34,11 @@ description: Use when designing terminal user interfaces, building TUI welcome s
    - 输出到 `designs/<name>.tui`
    - 结构使用 `{ version: "1", meta, tree }`
 4. **渲染预览**
-   - 使用 tui-studio 的渲染工具预览 `designs/<name>.tui`
+   - 若当前环境有用户提供的 renderer，预览 `designs/<name>.tui`；否则停下询问预览方式
 5. **小步迭代**
    - 用户反馈后只改相关节点，避免全量重写
 6. **导出代码**
-   - 定稿后再用 tui-studio 的 code exporter 导出 BubbleTea / Ink / Textual 等实现
+   - 仅在用户要求并提供 exporter 时，定稿后导出 BubbleTea / Ink / Textual 等实现
 
 ## Critical Quirks
 
