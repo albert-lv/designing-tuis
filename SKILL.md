@@ -1,67 +1,64 @@
 ---
 name: designing-tuis
-description: Use when designing terminal user interfaces, building TUI welcome screens / dashboards / wizards / CLI launch screens, replicating TUI app layouts from screenshots (lazygit, k9s, btop, etc.), or iterating on existing .tui files
+description: Use this skill whenever the user wants to design, replicate, or iterate on a terminal user interface, including TUI welcome screens, dashboards, wizards, CLI launch screens, tool panels, lazygit/k9s/btop-style screenshot replication, layout sketches, or focused edits to existing .tui files. Use it even when the user only describes panes, terminal screens, or CLI UI visuals without saying "TUI" explicitly.
 ---
 
 # Designing TUIs
 
-## Overview
+Use this skill to turn conversation, screenshots, or existing `.tui` files into practical terminal UI designs. Optimize for fast visual alignment first; export framework code only after the design is approved.
 
-Dialogue-driven TUI design: turn user needs or screenshots into `.tui` JSON, preview when a renderer is available, iterate from feedback, then optionally export framework code.
+## Operating Modes
 
-## When to Use
+Identify the mode before acting:
 
-- Terminal UI: welcome screen, dashboard, wizard, or tool panel
-- lazygit / k9s / btop screenshot replication or reference
-- Focused edit to an existing `.tui` file
-- Layout sketch, such as left tree plus right table
+- **Screenshot replication**: describe visible panes, hierarchy, density, borders, colors, and selection state before writing files.
+- **Text-to-layout**: restate the intended structure, primary interaction, and target terminal size.
+- **Existing `.tui` edit**: inspect the current tree and patch only the requested nodes.
+- **Code export**: only after approval, and only when the user provides an exporter.
 
-Do not use for plain CLI output, Web UI, or final prototypes.
+## Reference Loading
 
-## Prerequisites
+Load only what is needed:
 
-- Working directory has `designs/` and `references/`
-- For preview/export, user provides the renderer/exporter; this repo bundles no tools
+- Read `components-cheatsheet.md` before creating or editing components. It is the field/default source of truth.
+- Read `known-quirks.md` before debugging rendering problems or using edge-case layout behavior.
+- Read `workflow-examples.md` when the task resembles screenshot replication or a focused file tweak.
+
+This repository is documentation-only. Do not assume render or export tools ship with it.
 
 ## Workflow
 
-1. **Confirm the input first**
-   - Screenshot: describe layout/hierarchy, then wait before writing `.tui`
-   - Text: restate structure and key interactions
-2. **Check component defaults**
-   - Read `components-cheatsheet.md`; do not guess fields
-3. **Write `.tui`**
-   - Save to `designs/<name>.tui`
-   - Use `{ version: "1", meta, tree }`
-4. **Preview if possible**
-   - If a renderer is provided, preview it; otherwise ask how
-5. **Iterate in small steps**
-   - Change only relevant nodes; avoid full rewrites
-6. **Export code only on request**
-   - If requested and available, export BubbleTea / Ink / Textual code
+1. **Align on intent**
+   - For screenshots, describe the layout and wait for confirmation.
+   - For text prompts, confirm the panes, emphasis, and interaction model.
+2. **Draft the `.tui`**
+   - Save to `designs/<name>.tui` unless the user gives another path.
+   - Use `{ version: "1", meta, tree }`.
+   - Prefer theme color names over hardcoded hex colors.
+3. **Preview if available**
+   - Use the renderer command supplied by the user or environment.
+   - If no renderer is available, stop and ask how they want to preview.
+4. **Iterate surgically**
+   - Change only the nodes related to feedback.
+   - Preserve unrelated structure, labels, and styling.
+5. **Export only on request**
+   - Export BubbleTea / Ink / Textual code only after approval and only with an available exporter.
 
-## Critical Quirks
+## Output Contract
 
-See `known-quirks.md` for details:
+When delivering a design update, include:
 
-1. Cross-axis `"fill"` is unsupported; use explicit numbers
-2. `Box.title` is not rendered; simulate with inner `Text`
-3. `Popover` / `Tooltip` / `TextArea` are unavailable
-4. Verify field locations against the cheatsheet
+- The `.tui` path created or changed
+- A brief layout summary
+- Preview status, including any missing renderer/exporter blocker
+- Specific follow-up questions only when needed to continue
 
-## Common Mistakes
+## Guardrails
 
-| Mistake | Impact | Fix |
-|---|---|---|
-| Skipping cheatsheet | Invalid fields | Check defaults |
-| Cross-axis `"fill"` | 1 column/row collapse | Use numbers |
-| Hex colors | Poor theme behavior | Use theme names |
-| Wrong `width`/`height` level | Validation/render failure | Check location |
-| “Quick” skips confirmation | Layout drifts | Align intent |
+Stop and re-check before any of these:
 
-## Red Flags — STOP and Re-check
-
-- You are using `"fill"` on a non-main axis
-- You are unsure whether a field is in `props` or `layout`
-- You want to use `Popover` / `Tooltip` / `TextArea`
-- You only have a screenshot and no stated intent, but are about to generate `.tui`
+- Using `"fill"` on a non-main flex axis
+- Guessing whether a field belongs in `props` or `layout`
+- Using unavailable components: `Popover`, `Tooltip`, or `TextArea`
+- Generating `.tui` directly from a screenshot without confirming intent
+- Rewriting an entire existing design for a small requested edit
