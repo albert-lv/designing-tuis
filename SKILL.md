@@ -20,8 +20,7 @@ description: Use when designing terminal user interfaces, building TUI welcome s
 
 ## Prerequisites
 
-- 本地可访问 `tui-studio` 仓库（默认 `$HOME/arena/tui-studio`，可用 `$TUI_STUDIO_DIR` 覆盖）
-- Node 20+
+- 本地可访问 `tui-studio` 仓库与其渲染工具
 - 当前工作目录含 `designs/` 与 `references/`
 
 ## Workflow
@@ -35,7 +34,7 @@ description: Use when designing terminal user interfaces, building TUI welcome s
    - 输出到 `designs/<name>.tui`
    - 结构使用 `{ version: "1", meta, tree }`
 4. **渲染预览**
-   - `./render.sh designs/<name>.tui [width=80] [height=24]`
+   - 使用 tui-studio 的渲染工具预览 `designs/<name>.tui`
 5. **小步迭代**
    - 用户反馈后只改相关节点，避免全量重写
 6. **导出代码**
