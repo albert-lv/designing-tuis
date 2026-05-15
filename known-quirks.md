@@ -1,4 +1,4 @@
-# Known Quirks (tui-studio)
+# Known Quirks (TUI Design)
 
 ### Cross-axis `"fill"` collapses
 - Symptom: child width/height collapses to `1` unexpectedly.

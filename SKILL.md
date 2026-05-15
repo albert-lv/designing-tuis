@@ -21,7 +21,7 @@ description: Use when designing terminal user interfaces, building TUI welcome s
 ## Prerequisites
 
 - 当前工作目录含 `designs/` 与 `references/`
-- 如需预览或导出，用户需提供可用的 tui-studio 渲染/导出命令；不要假设本 skill 仓库内置工具
+- 如需预览或导出，用户需提供可用的 tui-studio 渲染/导出命令，不要假设本 skill 仓库内置工具
 
 ## Workflow
 
