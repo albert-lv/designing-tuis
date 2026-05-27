@@ -201,6 +201,7 @@ Load only what is needed:
 
 - Read `references/components-cheatsheet.md` before creating or editing components. It is the field/default/visual-signature source of truth.
 - Read `references/layout-inference-rules.md` during Phase 1-2 decomposition for layout direction, component identification, spacing, and proportion rules.
+- Read `references/color-accessibility.md` when choosing colors, designing status indicators, or any time color conveys meaning. Ensures WCAG compliance and color-blind safety.
 - Read `references/schema-to-code-mapping.md` when using the advanced route (Schema → Code conversion) or when generating multi-framework output.
 - Read `references/known-quirks.md` before debugging rendering problems or using edge-case layout behavior.
 - Read `references/workflow-examples.md` when the task resembles screenshot replication, multi-framework output, or iterative refinement.
@@ -268,3 +269,6 @@ Stop and re-check before any of these:
 - Omitting `tea.WithAltScreen()` (BubbleTea) or equivalent alternate screen usage
 - Generating BubbleTea code without `tea.WindowSizeMsg` handling for responsive layout
 - Mixing half-width and full-width characters without width calculation library
+- Using color as the sole indicator of state (success/error/warning/selected) without symbol or text label (WCAG 1.4.1)
+- Using red-green color pairs as sole differentiator between states (color-blind unsafe)
+- Using `dim` text on dark backgrounds without verifying contrast ≥ 4.5:1 (WCAG 1.4.3)

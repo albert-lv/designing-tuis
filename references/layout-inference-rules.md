@@ -126,6 +126,8 @@ Row [total width adaptive]
 - Colored text → prefer theme semantic color names (`primary` / `success` / `warning` / `error`)
 - When semantics are unclear → use base color names (`red` / `green` / `blue` / `cyan` / `magenta` / `yellow` / `gray` / `white`)
 
+**Accessibility requirement:** When color conveys meaning (status, selection, navigation), always pair with a non-color cue (symbol, text label, bold, reverse). See `references/color-accessibility.md` for WCAG compliance rules, color-blind safe palettes, and safe color combinations.
+
 ### Color Mapping Priority
 
 1. Theme semantic names (preferred): `primary`, `secondary`, `success`, `warning`, `error`, `info`, `muted`
