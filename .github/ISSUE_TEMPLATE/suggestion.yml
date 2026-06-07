@@ -1,0 +1,20 @@
+name: Suggestion
+description: Suggest an improvement to rules, mappings, or examples
+labels: ["suggestion"]
+body:
+  - type: input
+    id: file
+    attributes:
+      label: Affected file or section
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like to improve?
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why would this be useful?
