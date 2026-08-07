@@ -28,6 +28,7 @@ A structured skill and reference for designing **Terminal User Interfaces (TUIs)
 - [Bubble Tea](https://github.com/charmbracelet/bubbletea) (Go)
 - [Ink](https://github.com/vadimdemedes/ink) (React / Node.js)
 - [Textual](https://github.com/Textualize/textual) (Python)
+- [Ratatui](https://github.com/ratatui/ratatui) (Rust)
 
 ## Contributing
 
@@ -39,4 +40,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Keywords
 
-`tui` `terminal-user-interface` `design-to-code` `screenshot-to-code` `bubble-tea` `ink` `textual` `cli` `ui-design` `accessibility` `wcag` `schema` `skill`
+`tui` `terminal-user-interface` `design-to-code` `screenshot-to-code` `bubble-tea` `ink` `textual` `ratatui` `cli` `ui-design` `accessibility` `wcag` `schema` `skill`
