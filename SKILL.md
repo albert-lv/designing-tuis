@@ -1,6 +1,10 @@
 ---
 name: designing-tuis
 description: Design, replicate, or iterate terminal user interfaces from screenshots, descriptions, layout sketches, or existing .tui files. Generate framework code (BubbleTea/Ink/Textual/Ratatui) directly or via .tui Schema intermediate representation.
+license: MIT-0
+metadata:
+  openclaw:
+    homepage: https://github.com/albert-lv/designing-tuis
 ---
 
 # Designing TUIs
